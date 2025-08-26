@@ -38,7 +38,7 @@ com.assignment.playpowerlabs.AIQuizzer
 │── security/             # JWT authentication & filters
 │── service/              # Business logic (Quiz generation, evaluation, email, etc.)
 │── dto/                  # Data Transfer Objects
-│── util/                 # Helper utilities (JwtUtil, SpecBuilder, etc.)
+│── model/                 # DB Entities (Quiz, Question, etc.)
 
 ````
 
@@ -75,7 +75,8 @@ spring.data.redis.port=6379
 
 ```properties
 openrouter.api.url=https://openrouter.ai/api/v1/chat/completions
-openrouter.api.key=your_api_key_here
+openrouter.api.key=your_api_key_here (See my key in code) 
+openrouter.api.model = openai/gpt-oss-20b:free 
 ```
 
 ### 5️⃣ Build & Run
