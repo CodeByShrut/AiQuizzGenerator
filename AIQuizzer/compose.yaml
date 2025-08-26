@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: codevsp/aiquizzer-backend:postgres
+    container_name: postgres-aiquizzer
+    restart: always
+    environment:
+      POSTGRES_DB: aiquizzer
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Setpass99
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  aiquizzer:
+    image: codevsp/aiquizzer-app-backend:backend-latest
+    container_name: aiquizzer
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/aiquizzer
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Setpass99
+    restart: always
+
+volumes:
+  pgdata:
